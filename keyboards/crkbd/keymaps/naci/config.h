@@ -23,6 +23,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define SPLIT_USB_DETECT
 // This will make sure it detects master/slave with the KVM setup I have
 #define SPLIT_WATCHDOG_ENABLE
+#define SPLIT_POINTING_ENABLE
+#define POINTING_DEVICE_RIGHT
+#define MOUSE_EXTENDED_REPORT
+#define PIMORONI_TRACKBALL_SCALE 5
+
+#define POINTING_DEVICE_AUTO_MOUSE_ENABLE
 
 // Read hand information from EEPROM
 #define EE_HANDS
@@ -45,4 +51,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     #define RGBLIGHT_VAL_STEP 17
 #endif
 
-#define DYNAMIC_KEYMAP_LAYER_COUNT 5
+#define DYNAMIC_KEYMAP_LAYER_COUNT 6
