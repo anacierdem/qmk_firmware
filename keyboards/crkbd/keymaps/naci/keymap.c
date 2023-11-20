@@ -18,6 +18,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include QMK_KEYBOARD_H
 
+#define SCROLL_DIVISOR_H 15.0
+#define SCROLL_DIVISOR_V 15.0
+
+#define L_THUMB MT(MOD_LCTL,KC_SPC)
+#define R_THUMB LT(3,KC_SPC)
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                                   ,-----------------------------------------------------.
@@ -27,7 +33,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                                   |--------+--------+--------+--------+--------+--------|
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                        KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, RSFT_T(KC_ENT),
   //|--------+--------+--------+--------+--------+--------+--------|                 |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LGUI,   MO(1),  MT(MOD_LCTL,KC_SPC), LT(3,KC_SPC),   MO(2), KC_ENT
+                                          KC_LGUI,   MO(1), L_THUMB,                   R_THUMB,   MO(2),  KC_ENT
                                       //`--------------------------'                 `--------------------------'
 
   ),
@@ -40,7 +46,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                                   |--------+--------+--------+--------+--------+--------|
       _______, _______, _______, _______, _______, _______,                                     KC_PAST,   KC_P1,   KC_P2,   KC_P3, KC_PPLS, _______,
   //|--------+--------+--------+--------+--------+--------+--------|                 |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LALT, _______, _______,                   _______, KC_RALT, KC_P0
+                                          KC_LALT, _______, _______,                   _______, KC_RALT,   KC_P0
                                       //`--------------------------'                 `--------------------------'
   ),
 
@@ -58,28 +64,39 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [3] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                                   ,-----------------------------------------------------.
-       KC_TAB,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                     KC_PGUP, KC_HOME,   KC_UP,  KC_END,  KC_F12,  KC_DEL,
+       KC_TAB,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                     KC_MPLY, KC_HOME,   KC_UP, KC_PGUP, _______,  KC_DEL,
   //|--------+--------+--------+--------+--------+--------|                                   |--------+--------+--------+--------+--------+--------|
-      _______,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,                                     KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT,   DF(0),   DF(3),
+      _______,   KC_F8,   KC_F9,  KC_F10,  KC_F11,  KC_F12,                                     KC_MNXT, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______,
   //|--------+--------+--------+--------+--------+--------|                                   |--------+--------+--------+--------+--------+--------|
-      _______, _______, _______, _______,  KC_F12,  KC_F11,                                     XXXXXXX, KC_MPRV, KC_MPLY, KC_MNXT, XXXXXXX,   MO(4),
+      _______, _______, _______, _______, _______, _______,                                     KC_MPRV, KC_END,  KC_MPLY, KC_PGDN, _______,   MO(4),
   //|--------+--------+--------+--------+--------+--------+--------|                 |--------+--------+--------+--------+--------+--------+--------|
                                           _______, KC_LALT, _______,                   _______, _______, KC_RALT
                                       //`--------------------------'                 `--------------------------'
   ),
 
-  
   [4] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                                   ,-----------------------------------------------------.
-    QK_REBOOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+      _______, _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______, _______,
   //|--------+--------+--------+--------+--------+--------|                                   |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+      _______, _______, _______, _______, _______, _______,                                     KC_BTN2, _______, _______, _______, _______, _______,
   //|--------+--------+--------+--------+--------+--------|                                   |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+      _______, _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______, _______,
   //|--------+--------+--------+--------+--------+--------+--------|                 |--------+--------+--------+--------+--------+--------+--------|
-                                          XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX
+                                          _______, _______, _______,                   KC_BTN1, _______, _______
                                       //`--------------------------'                 `--------------------------'
-  )
+  ),
+
+  [5] = LAYOUT_split_3x6_3(
+  //,-----------------------------------------------------.                                   ,-----------------------------------------------------.
+      _______, _______, _______, _______, _______, _______,                                       DF(4), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   DF(0),
+  //|--------+--------+--------+--------+--------+--------|                                   |--------+--------+--------+--------+--------+--------|
+      _______, _______, _______, _______, _______, _______,                                     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|                                   |--------+--------+--------+--------+--------+--------|
+      _______, _______, _______, _______, _______, _______,                                     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
+  //|--------+--------+--------+--------+--------+--------+--------|                 |--------+--------+--------+--------+--------+--------+--------|
+                                          KC_LCTL, _______, KC_SPC,                    _______,   DF(3),   DF(1)
+                                      //`--------------------------'                 `--------------------------'
+  ),
 };
 
 #ifdef RGBLIGHT_ENABLE
@@ -104,10 +121,53 @@ void keyboard_post_init_user(void) {
 layer_state_t layer_state_set_user(layer_state_t state) {
     rgblight_set_layer_state(0, layer_state_cmp(state, 1));
     rgblight_set_layer_state(1, layer_state_cmp(state, 2));
-return state;
+    return state;
 }
 #endif
 
 #ifdef TAP_DANCE_ENABLE
 tap_dance_action_t tap_dance_actions[] = {};
+#endif
+
+#ifdef POINTING_DEVICE_ENABLE
+void pointing_device_init_user(void) {
+    set_auto_mouse_layer(4); 
+    set_auto_mouse_enable(true);         // always required before the auto mouse feature will work
+}
+
+bool set_scrolling = false;
+
+// Variables to store accumulated scroll values
+float scroll_accumulated_h = 0;
+float scroll_accumulated_v = 0;
+
+// Function to handle mouse reports and perform drag scrolling
+report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
+    // Check if drag scrolling is active
+    if (set_scrolling) {
+        // Calculate and accumulate scroll values based on mouse movement and divisors
+        scroll_accumulated_h += (float)mouse_report.x / SCROLL_DIVISOR_H;
+        scroll_accumulated_v += (float)mouse_report.y / SCROLL_DIVISOR_V;
+
+        // Assign integer parts of accumulated scroll values to the mouse report
+        mouse_report.h = (int8_t)scroll_accumulated_h;
+        mouse_report.v = -(int8_t)scroll_accumulated_v;
+
+        // Update accumulated scroll values by subtracting the integer parts
+        scroll_accumulated_h -= (int8_t)scroll_accumulated_h;
+        scroll_accumulated_v -= (int8_t)scroll_accumulated_v;
+
+        // Clear the X and Y values of the mouse report
+        mouse_report.x = 0;
+        mouse_report.y = 0;
+    }
+    return mouse_report;
+}
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (keycode == MO(2) || keycode == MO(1) || keycode == L_THUMB || keycode == R_THUMB) {
+        set_scrolling = record->event.pressed;
+    }
+    return true;
+}
 #endif
