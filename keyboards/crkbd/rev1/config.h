@@ -18,13 +18,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-/* ws2812 RGB LED */
-#define WS2812_DI_PIN   D3
-
-#ifdef RGBLIGHT_ENABLE
-#    define RGBLED_NUM 42 // Number of LEDs
-#    define RGBLED_SPLIT \
-        { 21, 21 }
-#    define RGBLIGHT_SPLIT
+#ifdef RGB_MATRIX_ENABLE
+#    define RGB_MATRIX_LED_COUNT 54
+#    define RGB_MATRIX_SPLIT \
+        { 27, 27 }
+#    define SPLIT_TRANSPORT_MIRROR
 #endif
-
