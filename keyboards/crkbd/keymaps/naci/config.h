@@ -29,6 +29,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define PIMORONI_TRACKBALL_SCALE 5
 
 #define POINTING_DEVICE_AUTO_MOUSE_ENABLE
+#define POINTING_DEVICE_ROTATION_90
 
 // Read hand information from EEPROM
 #define EE_HANDS
