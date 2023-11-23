@@ -19,20 +19,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 /* Select hand configuration */
-
-#define SPLIT_USB_DETECT
 // This will make sure it detects master/slave with the KVM setup I have
 #define SPLIT_WATCHDOG_ENABLE
-#define SPLIT_POINTING_ENABLE
-#define POINTING_DEVICE_RIGHT
-#define MOUSE_EXTENDED_REPORT
-#define PIMORONI_TRACKBALL_SCALE 5
-
-#define POINTING_DEVICE_AUTO_MOUSE_ENABLE
-#define POINTING_DEVICE_ROTATION_90
-
+#define SPLIT_USB_DETECT
 // Read hand information from EEPROM
 #define EE_HANDS
+
+// Pointing device configuration
+#ifdef POINTING_DEVICE_ENABLE
+    #define SPLIT_POINTING_ENABLE
+    #define POINTING_DEVICE_RIGHT
+    #define MOUSE_EXTENDED_REPORT
+    #define PIMORONI_TRACKBALL_SCALE 5
+
+    #define POINTING_DEVICE_AUTO_MOUSE_ENABLE
+    #define POINTING_DEVICE_ROTATION_90
+#endif
+
 
 #define RGBLIGHT_LAYERS
 #ifdef RGBLIGHT_ENABLE
@@ -50,6 +53,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     #define RGBLIGHT_HUE_STEP 10
     #define RGBLIGHT_SAT_STEP 17
     #define RGBLIGHT_VAL_STEP 17
+#endif
+
+#ifdef RGB_MATRIX_ENABLE
+    #define RGB_MATRIX_CYCLE_ALL
 #endif
 
 #define DYNAMIC_KEYMAP_LAYER_COUNT 6
