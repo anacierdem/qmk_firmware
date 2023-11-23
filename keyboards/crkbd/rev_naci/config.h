@@ -18,10 +18,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#ifdef RGBLIGHT_ENABLE
-#    define RGBLED_NUM 42 // Number of LEDs
-#    define RGBLED_SPLIT \
-        { 21, 21 }
-#    define RGBLIGHT_SPLIT
+#ifdef RGB_MATRIX_ENABLE
+    #define RGBLED_NUM 42 // Number of LEDs
+    #define RGBLED_SPLIT \
+            { 21, 21 }
+    #define RGBLIGHT_SPLIT
 #endif
-
