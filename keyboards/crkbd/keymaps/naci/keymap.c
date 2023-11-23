@@ -22,10 +22,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define SCROLL_DIVISOR_V 15.0
 
 #define L_THUMB MT(MOD_LCTL,KC_SPC)
-#define R_THUMB LT(3,KC_SPC)
+#define R_THUMB LT(LAYER_FUNCTIONS,KC_SPC)
+#define L1_SW TT(LAYER_NUMBERS)
+#define L2_SW TT(LAYER_SYMBOLS)
+#define L5_SW TT(LAYER_ADJUST)
+
+enum LAYER {
+    LAYER_QWERTY,
+    LAYER_NUMBERS,
+    LAYER_SYMBOLS,
+    LAYER_FUNCTIONS,
+    LAYER_MOUSE,
+    LAYER_ADJUST
+};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [0] = LAYOUT_split_3x6_3(
+  [LAYER_QWERTY] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                                   ,-----------------------------------------------------.
        KC_ESC,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                        KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                                   |--------+--------+--------+--------+--------+--------|
@@ -33,12 +45,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                                   |--------+--------+--------+--------+--------+--------|
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                        KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, RSFT_T(KC_ENT),
   //|--------+--------+--------+--------+--------+--------+--------|                 |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LGUI,   TT(1), L_THUMB,                   R_THUMB,   TT(2),  KC_ENT
+                                          KC_LGUI,   L1_SW, L_THUMB,                   R_THUMB,   L2_SW,  KC_ENT
                                       //`--------------------------'                 `--------------------------'
 
   ),
 
-  [1] = LAYOUT_split_3x6_3(
+  [LAYER_NUMBERS] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                                   ,-----------------------------------------------------.
        KC_TAB,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                        KC_6,    KC_7,    KC_8,    KC_9,    KC_0, _______,
   //|--------+--------+--------+--------+--------+--------|                                   |--------+--------+--------+--------+--------+--------|
@@ -50,7 +62,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                       //`--------------------------'                 `--------------------------'
   ),
 
-  [2] = LAYOUT_split_3x6_3(
+  [LAYER_SYMBOLS] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                                   ,-----------------------------------------------------.
        KC_ESC, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                                     KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,  KC_DEL,
   //|--------+--------+--------+--------+--------+--------|                                   |--------+--------+--------+--------+--------+--------|
@@ -62,19 +74,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                       //`--------------------------'                 `--------------------------'
   ),
 
-  [3] = LAYOUT_split_3x6_3(
+  [LAYER_FUNCTIONS] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                                   ,-----------------------------------------------------.
        KC_TAB,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                     KC_MPLY, KC_HOME,   KC_UP, KC_PGUP, XXXXXXX,  KC_DEL,
   //|--------+--------+--------+--------+--------+--------|                                   |--------+--------+--------+--------+--------+--------|
       _______,   KC_F8,   KC_F9,  KC_F10,  KC_F11,  KC_F12,                                     KC_MNXT, KC_LEFT, KC_DOWN, KC_RGHT, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                                   |--------+--------+--------+--------+--------+--------|
-      _______, _______, _______, _______, _______, _______,                                     KC_MPRV, KC_END,  KC_MPLY, KC_PGDN, XXXXXXX,   TT(5),
+      _______, _______, _______, _______, _______, _______,                                     KC_MPRV, KC_END,  KC_MPLY, KC_PGDN, XXXXXXX,   L5_SW,
   //|--------+--------+--------+--------+--------+--------+--------|                 |--------+--------+--------+--------+--------+--------+--------|
                                           _______, KC_LALT, _______,                   _______, _______, KC_RALT
                                       //`--------------------------'                 `--------------------------'
   ),
 
-  [4] = LAYOUT_split_3x6_3(
+  [LAYER_MOUSE] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                                   ,-----------------------------------------------------.
       _______, _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______, _______,
   //|--------+--------+--------+--------+--------+--------|                                   |--------+--------+--------+--------+--------+--------|
@@ -86,7 +98,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                       //`--------------------------'                 `--------------------------'
   ),
 
-  [5] = LAYOUT_split_3x6_3(
+  [LAYER_ADJUST] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                                   ,-----------------------------------------------------.
       _______, _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______, _______,
   //|--------+--------+--------+--------+--------+--------|                                   |--------+--------+--------+--------+--------+--------|
@@ -165,7 +177,7 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    if (keycode == MO(2) || keycode == MO(1) || keycode == L_THUMB || keycode == R_THUMB) {
+    if (keycode == L1_SW || keycode == L2_SW || keycode == L_THUMB || keycode == R_THUMB) {
         set_scrolling = record->event.pressed;
     }
     return true;
