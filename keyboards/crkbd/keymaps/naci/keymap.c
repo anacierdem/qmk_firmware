@@ -143,7 +143,7 @@ tap_dance_action_t tap_dance_actions[] = {};
 
 #ifdef POINTING_DEVICE_ENABLE
 void pointing_device_init_user(void) {
-    set_auto_mouse_layer(4); 
+    set_auto_mouse_layer(LAYER_MOUSE);
     set_auto_mouse_enable(true);         // always required before the auto mouse feature will work
 }
 
