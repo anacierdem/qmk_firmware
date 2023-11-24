@@ -111,23 +111,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 };
 
-#ifdef RGBLIGHT_ENABLE
-const rgblight_segment_t PROGMEM my_layer1_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {3, 2, HSV_GREEN}, {11, 2, HSV_GREEN}, {17, 2, HSV_GREEN}, {24, 2, HSV_GREEN}, {32, 2, HSV_GREEN}, {38, 2, HSV_GREEN}
-);
-
-const rgblight_segment_t PROGMEM my_layer2_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {3, 2, HSV_RED}, {11, 2, HSV_RED}, {17, 2, HSV_RED}, {24, 2, HSV_RED}, {32, 2, HSV_RED}, {38, 2, HSV_RED}
-);
-
-
-const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
-    my_layer1_layer,
-    my_layer2_layer
-);
-
 void keyboard_post_init_user(void) {
-    rgblight_layers = my_rgb_layers;
+
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {

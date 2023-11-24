@@ -25,7 +25,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Read hand information from EEPROM
 #define EE_HANDS
 
-// Pointing device configuration
 #ifdef POINTING_DEVICE_ENABLE
     #define SPLIT_POINTING_ENABLE
     #define POINTING_DEVICE_RIGHT
@@ -36,27 +35,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     #define POINTING_DEVICE_ROTATION_90
 #endif
 
-
-#define RGBLIGHT_LAYERS
-#ifdef RGBLIGHT_ENABLE
-    #define RGBLIGHT_EFFECT_BREATHING
-    #define RGBLIGHT_EFFECT_RAINBOW_MOOD
-    #define RGBLIGHT_EFFECT_RAINBOW_SWIRL
-    #define RGBLIGHT_EFFECT_SNAKE
-    #define RGBLIGHT_EFFECT_KNIGHT
-    #define RGBLIGHT_EFFECT_CHRISTMAS
-    #define RGBLIGHT_EFFECT_STATIC_GRADIENT
-    #define RGBLIGHT_EFFECT_RGB_TEST
-    #define RGBLIGHT_EFFECT_ALTERNATING
-    #define RGBLIGHT_EFFECT_TWINKLE
-    #define RGBLIGHT_LIMIT_VAL 180
-    #define RGBLIGHT_HUE_STEP 10
-    #define RGBLIGHT_SAT_STEP 17
-    #define RGBLIGHT_VAL_STEP 17
-#endif
-
 #ifdef RGB_MATRIX_ENABLE
-    #define RGB_MATRIX_CYCLE_ALL
+    #define RGB_MATRIX_MAXIMUM_BRIGHTNESS 180
+
+    #define RGB_MATRIX_HUE_STEP 8
+    #define RGB_MATRIX_SAT_STEP 8
+    #define RGB_MATRIX_VAL_STEP 8
+    #define RGB_MATRIX_SPD_STEP 10
+
+    #define ENABLE_RGB_MATRIX_BREATHING
+    #define ENABLE_RGB_MATRIX_CYCLE_PINWHEEL
+    #define ENABLE_RGB_MATRIX_SOLID_REACTIVE_SIMPLE
+    #define RGB_MATRIX_STARTUP_MODE RGB_MATRIX_BREATHING
 #endif
 
 #define DYNAMIC_KEYMAP_LAYER_COUNT 6
