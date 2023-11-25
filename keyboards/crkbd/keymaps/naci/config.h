@@ -24,6 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define SPLIT_USB_DETECT
 // Read hand information from EEPROM
 #define EE_HANDS
+#define TAPPING_TOGGLE 2
 
 #ifdef POINTING_DEVICE_ENABLE
     #define SPLIT_POINTING_ENABLE
