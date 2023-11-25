@@ -24,7 +24,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define SPLIT_USB_DETECT
 // Read hand information from EEPROM
 #define EE_HANDS
-#define TAPPING_TOGGLE 2
+
+#define SPLIT_LAYER_STATE_ENABLE
+#define TAPPING_TOGGLE 3
 
 #ifdef POINTING_DEVICE_ENABLE
     #define SPLIT_POINTING_ENABLE
@@ -39,15 +41,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifdef RGB_MATRIX_ENABLE
     #define RGB_MATRIX_MAXIMUM_BRIGHTNESS 180
 
-    #define RGB_MATRIX_HUE_STEP 8
-    #define RGB_MATRIX_SAT_STEP 8
-    #define RGB_MATRIX_VAL_STEP 8
-    #define RGB_MATRIX_SPD_STEP 10
-
-    #define ENABLE_RGB_MATRIX_BREATHING
     #define ENABLE_RGB_MATRIX_CYCLE_PINWHEEL
     #define ENABLE_RGB_MATRIX_SOLID_REACTIVE_SIMPLE
-    #define RGB_MATRIX_STARTUP_MODE RGB_MATRIX_BREATHING
+    #define RGB_MATRIX_STARTUP_MODE RGB_MATRIX_SOLID_REACTIVE_SIMPLE
 #endif
 
 #define DYNAMIC_KEYMAP_LAYER_COUNT 6
