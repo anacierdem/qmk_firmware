@@ -111,35 +111,32 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 };
 
-void keyboard_post_init_user(void) {
-
-}
+// https://docs.qmk.fm/#/feature_split_keyboard?id=custom-data-sync
 
 layer_state_t layer_state_set_user(layer_state_t state) {
 #ifdef POINTING_DEVICE_ENABLE
     // i2c can only communicate with Pimoroni on the right side
     if (is_keyboard_left()) return state;
-    if(get_highest_layer(state) == LAYER_MOUSE) {
-        pimoroni_trackball_set_rgbw(0, 0, 0, 255);
-        return state;
+    switch (get_highest_layer(state)) {
+        case LAYER_MOUSE:
+            pimoroni_trackball_set_rgbw(0, 0, 0, 255);
+            break;
+        case LAYER_NUMBERS:
+            pimoroni_trackball_set_rgbw(128, 128, 0, 0);
+            break;
+        case LAYER_SYMBOLS:
+            pimoroni_trackball_set_rgbw(128, 0, 128, 0);
+            break;
+        case LAYER_FUNCTIONS:
+            pimoroni_trackball_set_rgbw(0, 0, 255, 0);
+            break;
+        case LAYER_ADJUST:
+            pimoroni_trackball_set_rgbw(255, 0, 0, 0);
+            break;
+        default:
+            pimoroni_trackball_set_rgbw(0, 0, 0, 0);
+            break;
     }
-    if(get_highest_layer(state) == LAYER_NUMBERS) {
-        pimoroni_trackball_set_rgbw(128, 128, 0, 0);
-        return state;
-    }
-    if(get_highest_layer(state) == LAYER_SYMBOLS) {
-        pimoroni_trackball_set_rgbw(128, 0, 128, 0);
-        return state;
-    }
-    if(get_highest_layer(state) == LAYER_FUNCTIONS) {
-        pimoroni_trackball_set_rgbw(0, 0, 255, 0);
-        return state;
-    }
-    if(get_highest_layer(state) == LAYER_ADJUST) {
-        pimoroni_trackball_set_rgbw(255, 0, 0, 0);
-        return state;
-    }
-    pimoroni_trackball_set_rgbw(0, 0, 0, 0);
 #endif
     return state;
 }
