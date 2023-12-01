@@ -24,7 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define L_THUMB MT(MOD_LCTL,KC_SPC)
 #define R_THUMB LT(LAYER_FUNCTIONS,KC_SPC)
 #define L1_SW TT(LAYER_NUMBERS)
-#define L2_SW TT(LAYER_SYMBOLS)
+#define L2_SW MO(LAYER_SYMBOLS)
 #define L5_SW TT(LAYER_ADJUST)
 
 enum LAYER {
@@ -90,11 +90,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                                   ,-----------------------------------------------------.
       _______, _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______, _______,
   //|--------+--------+--------+--------+--------+--------|                                   |--------+--------+--------+--------+--------+--------|
-      _______, _______, _______, _______, _______, _______,                                     KC_BTN2, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______,                                     KC_BTN2, KC_BTN3, _______, _______, _______, _______,
   //|--------+--------+--------+--------+--------+--------|                                   |--------+--------+--------+--------+--------+--------|
       _______, _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______, _______,
   //|--------+--------+--------+--------+--------+--------+--------|                 |--------+--------+--------+--------+--------+--------+--------|
-                                          _______, _______, _______,                   KC_BTN1, KC_BTN3, _______
+                                          _______, _______, _______,                   KC_BTN1, _______, _______
                                       //`--------------------------'                 `--------------------------'
   ),
 
@@ -111,13 +111,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 };
 
-// https://docs.qmk.fm/#/feature_split_keyboard?id=custom-data-sync
-
-layer_state_t layer_state_set_user(layer_state_t state) {
+void housekeeping_task_user(void) {
 #ifdef POINTING_DEVICE_ENABLE
     // i2c can only communicate with Pimoroni on the right side
-    if (is_keyboard_left()) return state;
-    switch (get_highest_layer(state)) {
+    if (is_keyboard_left()) return;
+    switch (get_highest_layer(layer_state)) {
         case LAYER_MOUSE:
             pimoroni_trackball_set_rgbw(0, 0, 0, 255);
             break;
@@ -138,7 +136,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
             break;
     }
 #endif
-    return state;
 }
 
 #ifdef TAP_DANCE_ENABLE
@@ -181,7 +178,7 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    if (keycode == L1_SW || keycode == L2_SW || keycode == L_THUMB || keycode == R_THUMB) {
+    if (keycode == L2_SW) {
         set_scrolling = record->event.pressed;
     }
     return true;
