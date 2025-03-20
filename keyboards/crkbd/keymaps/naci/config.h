@@ -45,3 +45,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 #define DYNAMIC_KEYMAP_LAYER_COUNT 6
+#define HOLD_ON_OTHER_KEY_PRESS
+
