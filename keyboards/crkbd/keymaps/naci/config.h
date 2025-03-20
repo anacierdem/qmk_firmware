@@ -39,8 +39,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 #ifdef RGB_MATRIX_ENABLE
-    #define RGB_MATRIX_MAXIMUM_BRIGHTNESS 180
-
     #define ENABLE_RGB_MATRIX_CYCLE_PINWHEEL
     #define ENABLE_RGB_MATRIX_SOLID_REACTIVE_SIMPLE
     #define RGB_MATRIX_STARTUP_MODE RGB_MATRIX_SOLID_REACTIVE_SIMPLE
