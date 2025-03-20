@@ -2,3 +2,4 @@ VIA_ENABLE      = yes
 
 OLED_ENABLE     = no
 RGBLIGHT_ENABLE = no
+LAYER_LOCK_ENABLE = yes
