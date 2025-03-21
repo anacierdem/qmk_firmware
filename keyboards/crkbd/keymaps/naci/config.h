@@ -45,7 +45,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 #define DYNAMIC_KEYMAP_LAYER_COUNT 6
-#define HOLD_ON_OTHER_KEY_PRESS
+#define HOLD_ON_OTHER_KEY_PRESS_PER_KEY
 
 // This is an attempt at fixing isues with win/mac login
 #define NO_USB_STARTUP_CHECK
