@@ -48,4 +48,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define HOLD_ON_OTHER_KEY_PRESS_PER_KEY
 
 // This is an attempt at fixing isues with win/mac login
-#define NO_USB_STARTUP_CHECK
+// #define NO_USB_STARTUP_CHECK
